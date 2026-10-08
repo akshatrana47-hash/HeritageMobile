@@ -19,7 +19,20 @@ Repository hydration/persistence/no-reseed/reset/migration guard · login, inval
 ## Maestro e2e (`e2e/*.yaml`)
 Earlier **Debug-build runs on the Pro Max simulator passed**: `login.yaml`, `instructor-login.yaml`, `student-learning.yaml` (dev-gallery jump → chapter-1 assessment answered 6/6 → "Assessment passed" → saved progress on practice quiz and matching "Drill passed · 100%"), plus the smoke flow (Courses → My Courses → Course Details → Grades tab "Pending release" → Profile) and the screen-capture loops used for the screenshots below.
 
-Release-build suite run (`docs/qa/e2e-results.txt`, logs `docs/qa/e2e-*.log`): `login` PASS; `instructor-login` FAIL (self-healing logout step didn't reach the Sign out button before the 8 s scroll timeout — timeout since raised to 25 s in `e2e/logout-any.yaml`, not re-run); `student-learning` FAIL (one `quiz-next` tap was dropped by the simulator so only 5/6 answers were recorded before Submit — a flow timing flake, not an app defect; the same flow passed on the Debug build). Remaining flows (`student-checkout`, `student-assignment`, `instructor-attendance-grades`, `workshop-approval`, `persistence-restart`, `forbidden-and-api`) were still queued/unverified when the session ended — **treat them as NOT RUN**. Their logic is covered by the unit tests listed above.
+Release-build suite run (`docs/qa/e2e-results.txt`, logs `docs/qa/e2e-*.log`), final results:
+
+| Flow | Result | Note |
+|---|---|---|
+| login | PASS | |
+| workshop-approval | PASS | student request → instructor sees "Vance, Marcus" pending |
+| persistence-restart | PASS | notification read state + new leave request survive `stopApp`/`launchApp` |
+| instructor-login | FAIL | self-healing logout step: Sign out button not reached within the 8 s scroll timeout (raised to 25 s afterwards, not re-run) |
+| student-learning | FAIL | one `quiz-next` tap dropped → 5/6 answered before Submit (flow timing; passed on the Debug build) |
+| student-checkout / student-assignment | FAIL | `tab-courses` not visible at flow start — these flows assume a signed-in student from the previous flow; the prior failure left a different screen (ordering dependency in `run-all.sh`, not an app defect) |
+| instructor-attendance-grades | FAIL | `mark-u_student_marcus-late` not found after "All present" (row off-screen; flow needs a scroll step) |
+| forbidden-and-api | FAIL | forbidden gate + toggle steps passed; "Micro-credential" assertion failed after Save (likely sheet/list not scrolled into view) — program-type create/edit/reorder/delete is covered by unit tests |
+
+The failing flows have not been fixed or re-run; treat them as unverified on the Release build.
 
 ## Simulator screenshots (Debug build, Pro Max)
 `docs/qa/screenshots/`: `00-first-launch.png` (login), `01-student-home.png`, `st-*.png` (final marks, badges, extracurricular, program plan, tasks, documents, tax, finance, leave, English test, Ask Heritage, notifications, time zone), `in-*.png` (dashboard, AI draft, student list, course attendance, evaluations, history, workshop enrolments, repository, pending schedules, faculties, program types, terms, profile), `e2e-*`/`dbg-*` captures of outline, reading, assessment, practice quiz, matching. Visual comparison against the references was done for these; corrections made: checkbox row layout (Forgot password pushed off-screen), time-zone/date-time formatting on Hermes, roster/enrolment fixture coherence.
