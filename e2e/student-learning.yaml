@@ -1,0 +1,92 @@
+# Student login -> course -> material -> quiz/matching -> saved progress (uses the dev gallery jump to skip the 85s pacing timer)
+appId: org.reactjs.native.example.HeritageMobile
+---
+- runFlow: login.yaml
+- tapOn:
+    id: "tab-profile"
+- scrollUntilVisible:
+    element:
+      id: "profile-devgallery"
+    direction: DOWN
+    timeout: 15000
+- tapOn:
+    id: "profile-devgallery"
+- scrollUntilVisible:
+    element:
+      id: "dev-learn-ch1-assess"
+    direction: DOWN
+    timeout: 15000
+- tapOn:
+    id: "dev-learn-ch1-assess"
+- extendedWaitUntil:
+    notVisible:
+      id: "toast-success"
+    timeout: 8000
+- tapOn:
+    id: "header-back"
+- tapOn:
+    id: "tab-home"
+- tapOn:
+    id: "home-continue"
+- extendedWaitUntil:
+    visible:
+      id: "outline-screen"
+    timeout: 15000
+- assertVisible:
+    text: "5/70 activities completed"
+- tapOn:
+    id: "outline-continue"
+- extendedWaitUntil:
+    visible:
+      id: "assessment-screen"
+    timeout: 15000
+- tapOn:
+    id: "quiz-option-1"
+- tapOn:
+    id: "quiz-next"
+- tapOn:
+    id: "quiz-option-0"
+- tapOn:
+    id: "quiz-next"
+- tapOn:
+    id: "quiz-option-1"
+- tapOn:
+    id: "quiz-next"
+- tapOn:
+    id: "quiz-option-1"
+- tapOn:
+    id: "quiz-next"
+- tapOn:
+    id: "quiz-option-2"
+- tapOn:
+    id: "quiz-next"
+- tapOn:
+    id: "quiz-option-0"
+- tapOn:
+    id: "quiz-submit"
+- assertVisible:
+    text: "Assessment passed"
+- tapOn:
+    id: "header-back"
+- extendedWaitUntil:
+    visible:
+      id: "outline-screen"
+    timeout: 15000
+- tapOn:
+    id: "outline-activity-prg_office_admin_ch1_a4"
+- extendedWaitUntil:
+    visible:
+      id: "quiz-screen"
+    timeout: 15000
+- assertVisible:
+    id: "activity-next"
+- tapOn:
+    id: "header-back"
+- tapOn:
+    id: "outline-activity-prg_office_admin_ch1_a5"
+- extendedWaitUntil:
+    visible:
+      id: "matching-screen"
+    timeout: 15000
+- assertVisible:
+    text: "Drill passed · 100%"

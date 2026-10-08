@@ -1,0 +1,6 @@
+e2e run Thu  8 Oct 2026 14:22:57 PDT on 384B0841-A9EA-4273-9388-FAB511EF8B3B
+PASS  login
+FAIL  instructor-login (see docs/qa/e2e-instructor-login.log)
+FAIL  student-learning (see docs/qa/e2e-student-learning.log)
+FAIL  student-checkout (see docs/qa/e2e-student-checkout.log)
+FAIL  student-assignment (see docs/qa/e2e-student-assignment.log)
