@@ -78,3 +78,4 @@ yarn-error.log
 ios/build/
 docs/qa/e2e-*.log
 .maestro/
+e2e/_open.yaml

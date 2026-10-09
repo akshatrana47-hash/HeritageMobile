@@ -43,9 +43,9 @@ export function AskCoachScreen({ navigation, route }: RootScreenProps<'StudentAs
     <SafeAreaView edges={['top']} style={styles.root} testID="ask-coach">
       <View style={styles.header}>
         <Row justify="space-between">
-          <Row gap={10}>
+          <Row gap={10} style={{ flex: 1 }}>
             <View style={styles.spark}><Icon name="Sparkles" size={18} color={colors.white} /></View>
-            <View>
+            <View style={{ flex: 1 }}>
               <Text variant="titleMd" color={colors.white}>Ask coach</Text>
               <Text variant="caption" color={colors.green100} numberOfLines={1}>About: {found?.activity.title ?? '…'}</Text>
             </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, cleanup } from '@testing-library/react-native';
+import { render, fireEvent, cleanup } from '@testing-library/react-native';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LoginScreen } from '../../src/features/auth/LoginScreen';
@@ -9,7 +9,6 @@ import { createTestServices } from '../../src/services';
 import { createMemoryStore } from '../../src/storage/asyncStorage';
 import { useSessionStore } from '../../src/state/sessionStore';
 import { scenario } from '../../src/services/mock/simulate';
-import { DEMO_PASSWORD } from '../../src/fixtures/constants';
 
 jest.mock('react-native-safe-area-context', () => require('react-native-safe-area-context/jest/mock').default);
 

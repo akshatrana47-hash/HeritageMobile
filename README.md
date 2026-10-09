@@ -76,7 +76,8 @@ cd ios && xcodebuild -workspace HeritageMobile.xcworkspace -scheme HeritageMobil
 | `npm test` | Jest unit + component tests (`tests/`) |
 | `npm run lint` | ESLint |
 | `npx tsc --noEmit` | Type check |
-| `bash e2e/run-all.sh [udid]` | Maestro e2e suite against the app installed on a simulator (needs Java 17+ and Maestro on PATH; see `e2e/helpers.sh`) |
+| `bash e2e/run-all.sh [udid]` | Maestro e2e suite (9 flows) against the app installed on a simulator — run it on a **fresh install** (`xcrun simctl uninstall` first); needs Java 17+ and Maestro on PATH; see `e2e/helpers.sh` |
+| `bash e2e/open.sh <name> <steps.yaml>` | Runs an ad-hoc Maestro step file and saves `docs/qa/screenshots/<name>.png` (used for the screenshot pass) |
 
 ## Physical iPhone 17 Pro Max (not performed — needs your Apple account)
 

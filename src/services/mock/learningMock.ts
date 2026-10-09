@@ -328,8 +328,15 @@ export function createLearningMock(ctx: MockContext): LearningService {
           if (a.type === 'practiceQuiz') p.quizBestScore[a.id] = 100;
         });
         acts.slice(idx).forEach(a => {
+          // Everything from the target onwards starts as a clean attempt (re-runnable dev jump).
           delete p.assessmentResults[a.id];
           delete p.matchingResult[a.id];
+          delete p.quizAnswers[a.id];
+          delete p.matchingAssignments[a.id];
+          delete p.quizBestScore[a.id];
+          delete p.secondsSpent[a.id];
+          delete p.readToBottom[a.id];
+          p.completedActivityIds = p.completedActivityIds.filter(id => id !== a.id);
         });
         p.lastActivityId = activityId;
         delete p.completedAt;

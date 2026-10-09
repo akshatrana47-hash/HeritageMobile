@@ -74,7 +74,17 @@ Student Home, Courses tab hub, Profile/services hub, Student Support, Demo Check
 
 Reference bottom tabs vary (Programs | My Learning | Certificates | Profile; Home | Courses | Attendance | Schedule | Profile; Home | Courses | Students | Grades | More). Normalised to the brief: Student **Home | Courses | Schedule | Messages | Profile**, Instructor **Home | Courses | Grades | Messages | More**. Programs, My Learning and Certificates are entry points inside Courses; Attendance/Students live in Courses/More respectively. Detail screens are pushed on the root stack, so the tab bar is hidden on deep screens where some screenshots still show it.
 
-## 9. Native/technical decisions
+## 9. Visual fixes made from simulator screenshot comparison
+
+- Login: the "Remember me" row used `flex:1` on the label and pushed "Forgot password?" off-screen → label now shrinks.
+- Ask Coach: header title block had no flex → "Hide" button rendered off-screen on the Pro Max; fixed.
+- Activity "Back to course": used `navigate` (which pushed a second Outline on React Navigation 7) → now pops when possible.
+- Pressable `Card` wrapper ignored `flex`/`width` from the card style → quick tiles collapsed to icon-only on the Courses hub; the wrapper now inherits flex/alignSelf/width.
+- Assignment cards: footer text could push the "Open →" button off the right edge → left column is now `flex:1` with 2-line clamp.
+- Live room: toggle labels were dark on the dark card → white label colour.
+- Bottom sheets: the keyboard covered the Save button on badge/competency/program-type forms → sheets now shrink to the space above the keyboard (keyboardWillShow/Hide listeners) and single-line inputs use a Done return key so the keyboard can be dismissed without a tap target.
+
+## 10. Native/technical decisions
 
 - Bare React Native 0.87.1 (Community CLI 20.2.0), new architecture (default), Hermes.
 - `Intl` on Hermes: `hour12:false` + `formatToParts` returned empty hour parts, so date-time formatting uses `hourCycle:'h23'` and computes wall-clock components per IANA zone (`src/utils/format.ts`, `src/utils/timezone.ts`).

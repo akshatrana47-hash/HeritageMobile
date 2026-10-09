@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Screen, ScreenHeader, Text, Card, Row, Stack, Button, Pill, LoadingState, ErrorState, Icon, UnderlineTabs, Checkbox, Accordion, Input, Avatar, ListRow, DemoLabel, EmptyState } from '../../../components';
+import { Screen, ScreenHeader, Text, Card, Row, Stack, Button, LoadingState, ErrorState, Icon, UnderlineTabs, Checkbox, Accordion, Input, Avatar, ListRow, DemoLabel, EmptyState } from '../../../components';
 import { colors, spacing } from '../../../theme';
 import type { RootScreenProps, WorkspaceTab } from '../../../navigation/types';
 import { useSection } from '../../student/courses/useCourses';

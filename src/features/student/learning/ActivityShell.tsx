@@ -93,7 +93,7 @@ export function ActivityShell({ programmeId, activityId, children, readyToComple
     </Stack>
   );
   return (
-    <Screen testID={testID} header={<ScreenHeader backLabel="Back to course" onBack={() => navigation.navigate(Routes.StudentOutline, { programmeId })} actions={[{ label: ACTIVITY_LABEL[activity.type].toUpperCase(), accessibilityLabel: `Activity type ${ACTIVITY_LABEL[activity.type]}`, onPress: () => undefined }]} />} footer={footer} onScrollEnd={onScrollEnd}>
+    <Screen testID={testID} header={<ScreenHeader backLabel="Back to course" onBack={() => (navigation.canGoBack() ? navigation.goBack() : navigation.navigate(Routes.StudentOutline, { programmeId }))} actions={[{ label: ACTIVITY_LABEL[activity.type].toUpperCase(), accessibilityLabel: `Activity type ${ACTIVITY_LABEL[activity.type]}`, onPress: () => undefined }]} />} footer={footer} onScrollEnd={onScrollEnd}>
       <Text variant="overline" color={colors.coral600}>Chapter {chapter.index} · {chapter.title}</Text>
       <Text variant="displayMd" style={{ marginVertical: spacing.xs }}>{activity.title}</Text>
       <Row justify="space-between" style={{ marginBottom: spacing.md }}>

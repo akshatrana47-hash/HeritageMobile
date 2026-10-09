@@ -24,8 +24,20 @@ appId: org.reactjs.native.example.HeritageMobile
     timeout: 15000
 - tapOn:
     id: "mark-all-present"
+- scrollUntilVisible:
+    element:
+      id: "mark-u_student_marcus-late"
+    direction: DOWN
+    timeout: 20000
+    centerElement: true
 - tapOn:
     id: "mark-u_student_marcus-late"
+- scrollUntilVisible:
+    element:
+      id: "mark-save-draft"
+    direction: DOWN
+    timeout: 20000
+    optional: true
 - tapOn:
     id: "mark-save-draft"
 - assertVisible:
@@ -52,5 +64,12 @@ appId: org.reactjs.native.example.HeritageMobile
     visible:
       id: "grade-entry"
     timeout: 15000
+- waitForAnimationToEnd
+- scrollUntilVisible:
+    element:
+      id: "ge-u_student_marcus-gi_acsw_q1"
+    direction: DOWN
+    timeout: 20000
+    centerElement: true
 - assertVisible:
     id: "ge-u_student_marcus-gi_acsw_q1"

@@ -30,8 +30,9 @@ export function Card({ tone = 'surface', padding = spacing.lg, onPress, style, c
     </View>
   );
   if (onPress) {
+    const flat = (StyleSheet.flatten(style) ?? {}) as ViewStyle;
     return (
-      <Pressable onPress={onPress} accessibilityRole="button" style={({ pressed }) => ({ opacity: pressed ? 0.9 : 1 })}>
+      <Pressable onPress={onPress} accessibilityRole="button" style={({ pressed }) => ({ opacity: pressed ? 0.9 : 1, flex: flat.flex, alignSelf: flat.alignSelf, width: flat.width })}>
         {content}
       </Pressable>
     );

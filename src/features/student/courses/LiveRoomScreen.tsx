@@ -31,8 +31,8 @@ export function LiveRoomScreen({ navigation, route }: RootScreenProps<'StudentLi
               </View>
               {joined ? (
                 <>
-                  <Toggle label="Microphone (simulated)" value={mic} onChange={setMic} testID="room-mic" />
-                  <Toggle label="Camera (simulated)" value={cam} onChange={setCam} testID="room-cam" />
+                  <Toggle label="Microphone (simulated)" value={mic} onChange={setMic} testID="room-mic" labelColor={colors.white} />
+                  <Toggle label="Camera (simulated)" value={cam} onChange={setCam} testID="room-cam" labelColor={colors.white} />
                   <Button title="Leave demo room" variant="danger" onPress={() => { setJoined(false); navigation.goBack(); }} testID="room-leave" />
                 </>
               ) : (

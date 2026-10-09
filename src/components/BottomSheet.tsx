@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Animated, Modal, Pressable, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, useWindowDimensions } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Modal, Pressable, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, useWindowDimensions, Keyboard } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text } from './Text';
 import { Icon } from './Icon';
@@ -23,6 +23,12 @@ export function BottomSheet({ visible, onClose, title, subtitle, overline, child
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
   const slide = useRef(new Animated.Value(0)).current;
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  useEffect(() => {
+    const show = Keyboard.addListener('keyboardWillShow', e => setKeyboardHeight(e.endCoordinates.height));
+    const hide = Keyboard.addListener('keyboardWillHide', () => setKeyboardHeight(0));
+    return () => { show.remove(); hide.remove(); };
+  }, []);
   useEffect(() => {
     if (visible) Animated.spring(slide, { toValue: 1, useNativeDriver: true, damping: 22, stiffness: 220 }).start();
     else slide.setValue(0);
@@ -34,7 +40,7 @@ export function BottomSheet({ visible, onClose, title, subtitle, overline, child
       <View style={styles.root}>
         <Pressable accessibilityLabel="Close sheet" accessibilityRole="button" style={styles.backdrop} onPress={locked ? undefined : onClose} />
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.kav} pointerEvents="box-none">
-          <Animated.View testID={testID} style={[styles.sheet, { paddingBottom: Math.max(insets.bottom, spacing.lg), maxHeight: height * maxHeightRatio, transform: [{ translateY }] }]}>
+          <Animated.View testID={testID} style={[styles.sheet, { paddingBottom: Math.max(insets.bottom, spacing.lg), maxHeight: Math.max(240, (height - keyboardHeight) * maxHeightRatio), transform: [{ translateY }] }]}>
             <View style={styles.grabber} />
             {title || overline ? (
               <View style={styles.header}>
@@ -50,7 +56,7 @@ export function BottomSheet({ visible, onClose, title, subtitle, overline, child
                 ) : null}
               </View>
             ) : null}
-            <Body style={styles.body} contentContainerStyle={scroll ? styles.bodyContent : undefined} keyboardShouldPersistTaps="handled">
+            <Body style={styles.body} contentContainerStyle={scroll ? styles.bodyContent : undefined} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive">
               {children}
             </Body>
           </Animated.View>

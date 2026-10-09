@@ -170,10 +170,10 @@ export function RadioRow({ selected, onPress, label, description, testID, disabl
   );
 }
 
-export function Toggle({ value, onChange, label, testID }: { value: boolean; onChange: (v: boolean) => void; label: string; testID?: string }) {
+export function Toggle({ value, onChange, label, testID, labelColor }: { value: boolean; onChange: (v: boolean) => void; label: string; testID?: string; labelColor?: string }) {
   return (
     <Row justify="space-between" style={{ minHeight: touchTarget }}>
-      <Text variant="body" color={colors.ink} style={{ flex: 1 }}>{label}</Text>
+      <Text variant="body" color={labelColor ?? colors.ink} style={{ flex: 1 }}>{label}</Text>
       <RNSwitch testID={testID} accessibilityLabel={label} value={value} onValueChange={onChange} trackColor={{ true: colors.green700, false: colors.borderStrong }} />
     </Row>
   );

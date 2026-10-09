@@ -17,7 +17,7 @@ import { qk } from '../../../app/queryKeys';
 
 type Entry = { status?: AttendanceStatus; note?: string };
 
-export function CourseAttendanceScreen({ navigation, route }: RootScreenProps<'InstructorCourseAttendance'>) {
+export function CourseAttendanceScreen({ route }: RootScreenProps<'InstructorCourseAttendance'>) {
   const sections = useInstructorSections();
   const files = useFileActions();
   const m = useAttendanceMutations();

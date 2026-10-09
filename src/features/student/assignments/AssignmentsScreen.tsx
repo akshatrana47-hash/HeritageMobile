@@ -60,7 +60,7 @@ export function AssignmentsScreen({ navigation, route }: RootScreenProps<'Studen
                   <Row gap={6}><Icon name="Calendar" size={14} color={colors.inkMuted} /><Text variant="bodySm">{a.dueAt ? `Due ${formatDateTime(a.dueAt, tz)}` : 'Due date not set'}</Text></Row>
                   <View style={styles.divider} />
                   <Row justify="space-between">
-                    {a.derivedStatus === 'graded' && a.mark ? <Pill label={`Score: ${a.mark.score} / ${a.points}`} tone="green" small /> : a.derivedStatus === 'draft' ? <Pill label="Unsubmitted submission" tone="purple" small /> : a.derivedStatus === 'submitted' || a.derivedStatus === 'late' ? <Pill label={`Receipt ${a.submission?.receiptId}`} tone="blue" small /> : <Text variant="caption" style={{ fontStyle: 'italic' }}>{a.description.split('.')[0]}</Text>}
+                    <View style={{ flex: 1 }}>{a.derivedStatus === 'graded' && a.mark ? <Pill label={`Score: ${a.mark.score} / ${a.points}`} tone="green" small /> : a.derivedStatus === 'draft' ? <Pill label="Unsubmitted submission" tone="purple" small /> : a.derivedStatus === 'submitted' || a.derivedStatus === 'late' ? <Pill label={`Receipt ${a.submission?.receiptId}`} tone="blue" small /> : <Text variant="caption" style={{ fontStyle: 'italic' }} numberOfLines={2}>{a.description.split('.')[0]}</Text>}</View>
                     <Button title={a.derivedStatus === 'graded' ? 'View Grade →' : a.derivedStatus === 'draft' ? 'Edit Draft →' : 'Open →'} variant={a.derivedStatus === 'graded' ? 'outline' : 'primary'} size="sm" fullWidth={false} onPress={() => navigation.navigate(Routes.StudentAssignmentDetails, { assignmentId: a.id })} />
                   </Row>
                 </Stack>

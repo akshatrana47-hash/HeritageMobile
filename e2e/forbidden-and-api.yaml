@@ -49,6 +49,11 @@ appId: org.reactjs.native.example.HeritageMobile
     text: "Heritage Community College Registry"
 - tapOn:
     id: "pt-save"
+- scrollUntilVisible:
+    element:
+      text: "Micro-credential"
+    direction: DOWN
+    timeout: 20000
 - assertVisible:
     text: "Micro-credential"
 - scrollUntilVisible:

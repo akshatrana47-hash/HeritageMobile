@@ -40,28 +40,143 @@ appId: org.reactjs.native.example.HeritageMobile
     visible:
       id: "assessment-screen"
     timeout: 15000
-- tapOn:
-    id: "quiz-option-1"
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      text: "1 / 6"
+    timeout: 10000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "quiz-option-1"
+          direction: DOWN
+          timeout: 10000
+          centerElement: true
+      - tapOn:
+          id: "quiz-option-1"
+      - extendedWaitUntil:
+          visible:
+            text: "1/6 answered"
+          timeout: 4000
 - tapOn:
     id: "quiz-next"
-- tapOn:
-    id: "quiz-option-0"
+- extendedWaitUntil:
+    visible:
+      text: "2 / 6"
+    timeout: 10000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "quiz-option-0"
+          direction: DOWN
+          timeout: 10000
+          centerElement: true
+      - tapOn:
+          id: "quiz-option-0"
+      - extendedWaitUntil:
+          visible:
+            text: "2/6 answered"
+          timeout: 4000
 - tapOn:
     id: "quiz-next"
-- tapOn:
-    id: "quiz-option-1"
+- extendedWaitUntil:
+    visible:
+      text: "3 / 6"
+    timeout: 10000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "quiz-option-1"
+          direction: DOWN
+          timeout: 10000
+          centerElement: true
+      - tapOn:
+          id: "quiz-option-1"
+      - extendedWaitUntil:
+          visible:
+            text: "3/6 answered"
+          timeout: 4000
 - tapOn:
     id: "quiz-next"
-- tapOn:
-    id: "quiz-option-1"
+- extendedWaitUntil:
+    visible:
+      text: "4 / 6"
+    timeout: 10000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "quiz-option-1"
+          direction: DOWN
+          timeout: 10000
+          centerElement: true
+      - tapOn:
+          id: "quiz-option-1"
+      - extendedWaitUntil:
+          visible:
+            text: "4/6 answered"
+          timeout: 4000
 - tapOn:
     id: "quiz-next"
-- tapOn:
-    id: "quiz-option-2"
+- extendedWaitUntil:
+    visible:
+      text: "5 / 6"
+    timeout: 10000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "quiz-option-2"
+          direction: DOWN
+          timeout: 10000
+          centerElement: true
+      - tapOn:
+          id: "quiz-option-2"
+      - extendedWaitUntil:
+          visible:
+            text: "5/6 answered"
+          timeout: 4000
 - tapOn:
     id: "quiz-next"
-- tapOn:
-    id: "quiz-option-0"
+- extendedWaitUntil:
+    visible:
+      text: "6 / 6"
+    timeout: 10000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "quiz-option-0"
+          direction: DOWN
+          timeout: 10000
+          centerElement: true
+      - tapOn:
+          id: "quiz-option-0"
+      - extendedWaitUntil:
+          visible:
+            text: "6/6 answered"
+          timeout: 4000
+- scrollUntilVisible:
+    element:
+      id: "quiz-submit"
+    direction: DOWN
+    timeout: 10000
+    centerElement: true
 - tapOn:
     id: "quiz-submit"
 - assertVisible:

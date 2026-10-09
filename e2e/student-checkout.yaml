@@ -1,6 +1,7 @@
 # Catalogue -> mock checkout -> enrolment -> resume learning
 appId: org.reactjs.native.example.HeritageMobile
 ---
+- runFlow: login.yaml
 - tapOn:
     id: "tab-courses"
 - tapOn:

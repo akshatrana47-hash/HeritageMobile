@@ -53,7 +53,7 @@ export function EditLessonScreen({ navigation, route }: RootScreenProps<'Instruc
   const [selection, setSelection] = useState({ start: 0, end: 0 });
   const [generating, setGenerating] = useState<'lesson' | 'quiz' | null>(null);
   const [publishOpen, setPublishOpen] = useState(false);
-  const inputRef = useRef<TextInput>(null);
+  const inputRef = useRef<React.ElementRef<typeof TextInput>>(null);
   useEffect(() => { if (q.data && !form) setForm(q.data); }, [q.data, form]);
   const dirty = !!form && !!q.data && JSON.stringify(form) !== JSON.stringify(q.data);
   const { allowLeave } = useUnsavedChangesGuard(dirty);

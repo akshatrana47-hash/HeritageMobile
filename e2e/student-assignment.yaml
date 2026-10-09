@@ -1,6 +1,7 @@
 # Assignment: draft -> submit (upload failure then retry) -> persisted receipt
 appId: org.reactjs.native.example.HeritageMobile
 ---
+- runFlow: login.yaml
 - tapOn:
     id: "tab-courses"
 - tapOn:
@@ -9,6 +10,13 @@ appId: org.reactjs.native.example.HeritageMobile
     visible:
       id: "assignments-screen"
     timeout: 15000
+- waitForAnimationToEnd
+- scrollUntilVisible:
+    element:
+      id: "assignment-as_acsw_q2"
+    direction: DOWN
+    timeout: 20000
+    centerElement: true
 - tapOn:
     id: "assignment-as_acsw_q2"
 - extendedWaitUntil:
@@ -20,8 +28,18 @@ appId: org.reactjs.native.example.HeritageMobile
       id: "attachment-add"
     direction: DOWN
     timeout: 15000
-- assertVisible:
-    text: "Attach your completed exam document above to enable submission."
+- scrollUntilVisible:
+    element:
+      text: "Attach your completed document above to enable submission."
+    direction: DOWN
+    timeout: 15000
+    centerElement: true
+- scrollUntilVisible:
+    element:
+      id: "attachment-add"
+    direction: UP
+    timeout: 15000
+    centerElement: true
 - tapOn:
     id: "attachment-add"
 # iOS document picker (native UI) — pick the first file visible, or cancel

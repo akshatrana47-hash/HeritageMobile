@@ -8,10 +8,18 @@ appId: org.reactjs.native.example.HeritageMobile
     visible:
       id: "notifications-screen"
     timeout: 15000
+- scrollUntilVisible:
+    element:
+      id: "notif-read-n_s_2"
+    direction: DOWN
+    timeout: 15000
+    centerElement: true
 - tapOn:
     id: "notif-read-n_s_2"
-- assertNotVisible:
-    text: "1 Unread"
+- extendedWaitUntil:
+    notVisible:
+      id: "notif-read-n_s_2"
+    timeout: 10000
 - tapOn:
     id: "header-back"
 - tapOn:
@@ -51,6 +59,16 @@ appId: org.reactjs.native.example.HeritageMobile
       id: "student-home"
     timeout: 30000
 - tapOn:
+    id: "home-notifications"
+- extendedWaitUntil:
+    visible:
+      id: "notifications-screen"
+    timeout: 15000
+- assertNotVisible:
+    id: "notif-read-n_s_2"
+- tapOn:
+    id: "header-back"
+- tapOn:
     id: "tab-profile"
 - scrollUntilVisible:
     element:
@@ -59,5 +77,13 @@ appId: org.reactjs.native.example.HeritageMobile
     timeout: 15000
 - tapOn:
     id: "profile-leave"
-- assertVisible:
-    text: "2 Active"
+- extendedWaitUntil:
+    visible:
+      id: "leave-screen"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      text: "Family travel for a scheduled procedure (demo)"
+    direction: DOWN
+    timeout: 20000
+    centerElement: true

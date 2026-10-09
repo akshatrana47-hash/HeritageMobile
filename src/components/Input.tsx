@@ -40,6 +40,7 @@ export function Input({ label, required, helper, error, leftIcon, rightIcon, onR
           testID={testID}
           accessibilityLabel={label ?? rest.placeholder}
           placeholderTextColor={colors.inkFaint}
+          returnKeyType={rest.multiline ? undefined : 'done'}
           {...rest}
           secureTextEntry={secure ? hidden : rest.secureTextEntry}
           onFocus={e => { setFocused(true); rest.onFocus?.(e); }}
